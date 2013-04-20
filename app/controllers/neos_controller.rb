@@ -7,6 +7,7 @@ class NeosController < ApplicationController
 	end
 	def new
 		@neo = Neo.new
+		@observations = [Observation.new]*2
 	end
 	def edit
 		
