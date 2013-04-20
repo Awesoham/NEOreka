@@ -4,6 +4,7 @@ NEOreka::Application.routes.draw do
 
   resources :users 
   resources :neos
-
+  resources :observations
+  
   match 'users/:id/neos' => 'neos#neos_of'
 end

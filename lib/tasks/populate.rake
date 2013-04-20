@@ -18,7 +18,7 @@ namespace :db do
         ((n*100).to_i)/100.0
     end
 
-    puts "#{GREEN}Starting populate task.#{RESET}"
+    puts "#{RED}Starting populate task.#{RESET}"
 
     puts "There will be #{BLUE}#{users}#{RESET} users, #{BLUE}#{neos}#{RESET} NEOs and #{BLUE}#{votes}#{RESET} votes."
 
@@ -27,10 +27,12 @@ namespace :db do
                  email: "coder.soham@gmail.com",
                  password: "foobar")
 
-    print "#{RED}Creating dummy users...#{RESET} \r"
+    ##############################################################################################################################
+
+    print "#{BLUE}Creating dummy users...#{RESET} \r"
 
     users.times do |n|
-      print "#{RED}Creating dummy users...#{BLUE} #{strip_decimals(n*100.0/users).to_s.rjust(5)}% #{RESET}\r"
+      print "#{BLUE}Creating dummy users...#{RED} #{strip_decimals(n*100.0/users).to_s.rjust(5)}% #{RESET}\r"
       name  = Faker::Name.name
       email = "example-#{n+1}@foobar.org"
       password  = "password"
@@ -38,29 +40,45 @@ namespace :db do
                    email:    email,
                    password: password)
     end
-    puts "#{RED}Creating dummy users...#{GREEN} done.#{RESET}  "
+    puts "#{BLUE}Creating dummy users...#{RED} done.#{RESET}  "
 
-    print "#{RED}Creating dummy NEOs, please wait...#{RESET} \r"
+    ##############################################################################################################################
+
+    print "#{BLUE}Creating dummy NEOs, please wait...#{RESET} \r"
 
     neos.times do |n|
-      print "#{RED}Creating dummy NEOs, please wait...#{BLUE} #{strip_decimals(n*100.0/neos).to_s.rjust(5)}% #{RESET}\r"
+      print "#{BLUE}Creating dummy NEOs, please wait...#{RED} #{strip_decimals(n*100.0/neos).to_s.rjust(5)}% #{RESET}\r"
       name  = Faker::Name.last_name
       num = rand(1..10000)
 
       Neo.create!(name: "#{name} #{num}",
-                   user_id: rand(1..100),
-                   ra: rand(0..8640000)/100.0,
-                   dec: rand(-32400000..32400000)/100.0,
+                   user: User.find(rand(1..users)),
                    magnitude: rand(-25..30),
                    notes: Faker::Lorem.sentence(10),
                    score: rand(0..100))
     end
-    puts "#{RED}Creating dummy NEOs, please wait...#{GREEN} done.#{RESET}  "
+    puts "#{BLUE}Creating dummy NEOs, please wait...#{RED} done.#{RESET}  "
 
-    print "#{RED}Adding random votes...#{RESET} \r"
+    ##############################################################################################################################
+
+    print "#{BLUE}Creating sample observations, one moment...#{RESET} \r"
+
+    (neos*10).times do |n|
+      print "#{BLUE}Creating sample observations, one moment...#{RED} #{strip_decimals(n*10/neos).to_s.rjust(5)}% #{RESET}\r"
+
+      Observation.create!(neo: Neo.find(rand(1..neos)),
+                    user: User.find(rand(1..users)),
+                    ra: rand(0..86400),
+                    dec: rand(-324000..324000))
+    end
+    puts "#{BLUE}Creating sample observations, one moment...#{RED} done.#{RESET}  "
+
+    ##############################################################################################################################
+
+    print "#{BLUE}Adding random votes...#{RESET} \r"
 
     users.times do |n|
-      print "#{RED}Adding random votes...#{BLUE} #{strip_decimals((n*1000.0/users**2.0)/2).to_s.rjust(5)}% #{RESET}\r"
+      print "#{BLUE}Adding random votes...#{RED} #{strip_decimals(10*n/users).to_s.rjust(5)}% #{RESET}\r"
       user = User.find(n+1)
       (1..((users/20.0).to_i-1)).to_a.sample(users+1).each do |x|
         user.vote_for(Neo.find(x+1))
@@ -69,7 +87,10 @@ namespace :db do
         user.vote_against(Neo.find(x+1))
       end 
     end  
-    puts "#{RED}Adding random votes...#{GREEN} done.#{RESET}  "
+    puts "#{BLUE}Adding random votes...#{RED} done.#{RESET}  "
+
+    ##############################################################################################################################
+
     puts "Done! Go, code and make the world an awesomer place."
 
     task n.to_s.to_sym do ; end

@@ -34,7 +34,6 @@ gem 'thumbs_up'
 gem 'cocoon'
 
 #gem 'github-markdown'
-gem 'activerecord-postgres-hstore'
 
 group :development do
   gem 'quiet_assets'

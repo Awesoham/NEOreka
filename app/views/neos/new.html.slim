@@ -1,10 +1,14 @@
 - title "Add a NEO"
 
 = simple_form_for @neo do |f|
-	legend
-		| What exactly did you see?
 	= f.input :name
-	= f.input :ra
-	= f.input :dec
+	- for obs in @observations do
+		= simple_form_for obs do |o|
+			table cellpadding=5
+				tr
+					td = o.input :ra
+					td = o.input :dec
+
+
 
 
