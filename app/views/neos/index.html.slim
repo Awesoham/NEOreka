@@ -1,0 +1,34 @@
+- title "All known NEOs"
+- unless @neos.empty?
+	table.tablesorter cellpadding=5 border=0 
+		thead
+			tr
+				th.head_name 
+				th.head_ra colspan=3 Right Ascension 
+				th.head_dec colspan=3 Declination
+				th.discovery Discovered on
+				th.user Discoverer
+		tbody		
+			- for neo in @neos
+				tr 
+					td.name = link_to "#{neo.name}", "/neo/#{neo.id}"
+
+					td.ra.h = neo._ra[:hr]
+					td.ra.m = neo._ra[:min]
+					td.ra.s = neo._ra[:sec]
+
+					td.dec.h = neo._dec[:hr]
+					td.dec.m = neo._dec[:min]
+					td.dec.s = neo._dec[:sec]
+
+					td.discovery = neo.created_at.to_s(:long_date)
+
+					td.user = link_to "#{neo.user.full_name}", "/user/#{neo.user_id}"
+== paginate @neos, theme: "bootstrap", window: 2
+
+- content_for :sidebar do 
+	| Yeah, that's all we got for now.
+
+less:
+	.ra, .dec { text-align: right }	
+	.h { font-weight: bold }			

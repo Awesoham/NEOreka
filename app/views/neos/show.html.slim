@@ -1,0 +1,13 @@
+- title "#{@neo.name}"
+
+
+
+- content_for :sidebar do
+	table cellpadding=2
+		tr
+			td RA
+			td = raw "#{@neo.ra_str}"
+		tr
+			td Dec.
+			td = raw "#{@neo.dec_str}"
+			

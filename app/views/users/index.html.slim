@@ -1,0 +1,14 @@
+#userlist
+	== yield
+	- unless @users.empty?
+		table
+			- for user in @users
+				tr
+					td.name = user.full_name
+					td.neos = user.neos.count
+
+
+
+
+
+

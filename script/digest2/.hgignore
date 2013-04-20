@@ -1,0 +1,21 @@
+syntax: glob
+*.6
+*.a
+*.bz2
+*.out
+*.orig
+.hgignore
+c/s3mbin
+c/muk
+c/astorb.dat
+c/digest2
+c/digest2.model
+c/digest2.obscodes
+c/digest2.config
+go/s3mbin/s3mbin
+go/muk/astorb.dat
+go/muk/muk
+go/digest2/digest2
+go/digest2/digest2.gmodel
+go/digest2/digest2.obscodes
+go/digest2/digest2.config
