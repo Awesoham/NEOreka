@@ -1,0 +1,13 @@
+- title "NEOs found by #{@user.full_name}"
+- unless @neos.empty?
+	table.tablesorter cellpadding=5 border=0 
+		thead
+			tr
+				th.head_name 
+				th.discovery Discovered on
+		tbody		
+			- for neo in @neos
+				tr 
+					td.name = link_to "#{neo.name}", "/neos/#{neo.id}"
+
+					td.discovery = neo.created_at.to_s(:long_date)

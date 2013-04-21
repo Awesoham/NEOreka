@@ -1,0 +1,24 @@
+- title "All known NEOs"
+- unless @neos.empty?
+	table.tablesorter cellpadding=5 border=0 
+		thead
+			tr
+				th.head_name 
+				th.discovery Discovered on
+				th.user Discoverer
+		tbody		
+			- for neo in @neos
+				tr 
+					td.name = link_to "#{neo.name}", "/neos/#{neo.id}"
+
+					td.discovery = neo.created_at.to_s(:long_date)
+
+					td.user = link_to "#{neo.user.full_name}", "/users/#{neo.user_id}"
+== paginate @neos, theme: "bootstrap", window: 2
+
+- content_for :sidebar do 
+	| Yeah, that's all we got for now.
+
+less:
+	.ra, .dec { text-align: right }	
+	.h { font-weight: bold }			

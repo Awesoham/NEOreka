@@ -1,0 +1,27 @@
+- title "Add a NEO"
+
+= simple_form_for @neo, :url => '/neos/create' do |f|
+	= f.input :name
+	hr
+	br
+	- for obs in @observations do
+		= simple_form_for obs do |o|
+			  = o.input :ra, :wrapper => :append, :label => "Right Ascension" do 
+			  		= o.input_field :ra_h, :class => :mini
+			  		= content_tag :span, "h", class: "add-on"
+			  		= o.input_field :ra_m, :input_html => {class: "input_small"}
+			  		= content_tag :span, "m", class: "add-on"
+			  		= o.input_field :ra_s, :input_html => {class: "input_small"}
+			  		= content_tag :span, "s", class: "add-on"
+			  = o.input :dec, :wrapper => :append, :label => "Declination" do 
+			  		= o.input_field :dec_h
+			  		= content_tag :span, "h", class: "add-on"
+			  		= o.input_field :dec_m
+			  		= content_tag :span, "m", class: "add-on"
+			  		= o.input_field :dec_s
+			  		= content_tag :span, "s", class: "add-on"
+			  hr
+	= f.button :wrapped
+
+
+		

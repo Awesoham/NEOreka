@@ -1,0 +1,17 @@
+.bundle
+db/*.sqlite3
+db/development.db
+log/*.log
+tmp/*
+coverage/*
+rerun.txt
+config/database.yml
+doc/**/*
+vendor/bundle
+vendor/cache
+vendor/ruby
+bin
+.sass-cache
+._*
+.env
+script/digest2/astorb.dat

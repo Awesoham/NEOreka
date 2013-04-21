@@ -1,0 +1,7 @@
+- title "#{@user.full_name}"
+.div#span4
+	- if @user.neos.any?
+		- for n in @user.neos
+			.li 
+			| #{n.name}
+
