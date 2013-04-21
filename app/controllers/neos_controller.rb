@@ -1,6 +1,6 @@
 class NeosController < ApplicationController
 	def index
-		@neos = Neo.includes(:user).page(params[:page])
+		@neos = Neo.includes(:user).page(params[:page]).per(20)
 	end
 
 	def show
@@ -45,8 +45,16 @@ class NeosController < ApplicationController
 	end
 
 	def destroy
-		
-	end
+		@neo = Neo.find(params[:id])
+		if current_user = @neo.user
+			@neo.destroy
+			flash[:success] = "NEO deleted. Party hard."
+			redirect_to '/neos/'
+		else
+			flash[:warning] = "You didn't report that NEO - you can't delete that!"	
+			redirect_to neo_path(@neo)
+		end
+	end	
 	
 	def neos_of
 		@user = User.find(params[:id])

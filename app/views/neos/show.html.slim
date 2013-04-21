@@ -7,7 +7,7 @@ table.table.table-striped.table-hover.table-bordered
 			th colspan=3 Right Ascension 
 			th colspan=3 Declination
 			th Observed by 
-	- @neo.observations.all.each do |obs|
+	- @neo.observations.all.reverse.each do |obs|
 		tbody
 			tr
 				td = time_ago_in_words(obs.created_at) + " ago"
@@ -17,7 +17,7 @@ table.table.table-striped.table-hover.table-bordered
 				td = raw(obs.dec_d);
 				td = raw(obs.dec_m);
 				td = raw(obs.dec_s);
-				td = obs.user ? obs.user.full_name : "Nobody"
+				td = obs.user ? obs.user.full_name : @neo.user.full_name
 
 = render :partial => "shared/disqus", :locals => { title: @neo.name }
 
@@ -56,6 +56,8 @@ table.table.table-striped.table-hover.table-bordered
 - content_for :post_sidebar do
 	a.btn.btn-primary href="/neos/#{@neo.id}/edit/"
 		b Edit this NEO
+	br
+	br
 	- if @neo.user == current_user
-		a.btn.btn-danger href="/neos/#{@neo.id}/destroy/"
+		= link_to "delete", @neo, method: :delete, data: { confirm: 'You sure?' }, title: @neo.name
 		b Delete this NEO				
