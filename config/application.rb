@@ -75,5 +75,6 @@ module NEOreka
 
     # Default host for action mailer, initializers/mailer.rb
     config.host = "localhost:3000"
+    config.autoload_paths += %W(#{config.root}/lib/extras)
   end
 end

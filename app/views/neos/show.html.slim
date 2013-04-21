@@ -1,13 +1,22 @@
 - title "#{@neo.name}"
 
-
-
 - content_for :sidebar do
 	table cellpadding=2
 		tr
-			td RA
-			td = raw "#{@neo.ra_str}"
+			td 
+				b Score
+			td style="text-align: right" = @neo.score
 		tr
-			td Dec.
-			td = raw "#{@neo.dec_str}"
+			td 
+				b Votes
+			td style="text-align: right" = @neo.votes_for - @neo.votes_against
+	.btn-group
+		a.btn.btn-primary.btn-success href="#{vote_up_neo_path(@neo)}"
+			i.icon-thumbs-up 
+			| Vote up
+		a.btn.btn-primary.btn-default href="#{vote_down_neo_path(@neo)}"		
+			| Vote down 
+			i.icon-thumbs-down 
+
+			
 			

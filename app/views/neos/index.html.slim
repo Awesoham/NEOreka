@@ -9,11 +9,11 @@
 		tbody		
 			- for neo in @neos
 				tr 
-					td.name = link_to "#{neo.name}", "/neo/#{neo.id}"
+					td.name = link_to "#{neo.name}", "/neos/#{neo.id}"
 
 					td.discovery = neo.created_at.to_s(:long_date)
 
-					td.user = link_to "#{neo.user.full_name}", "/user/#{neo.user_id}"
+					td.user = link_to "#{neo.user.full_name}", "/users/#{neo.user_id}"
 == paginate @neos, theme: "bootstrap", window: 2
 
 - content_for :sidebar do 

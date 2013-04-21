@@ -49,7 +49,7 @@ namespace :db do
     neos.times do |n|
       print "#{BLUE}Creating dummy NEOs, please wait...#{RED} #{strip_decimals(n*100.0/neos).to_s.rjust(5)}% #{RESET}\r"
       name  = Faker::Name.last_name
-      num = rand(1..10000)
+      num = 10000-n #rand() *may* give duplicate records at times.
 
       Neo.create!(name: "#{name} #{num}",
                    user: User.find(rand(1..users)),

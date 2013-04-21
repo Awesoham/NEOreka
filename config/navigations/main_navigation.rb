@@ -12,6 +12,7 @@ SimpleNavigation::Configuration.run do |navigation|
     end
 
     primary.item :neos, 'All NEOs', neos_path
+    #primary.item :random, 'Random', neo_random_path
     primary.item :users, 'Users', users_path
   end
 end
