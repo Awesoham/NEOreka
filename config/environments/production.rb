@@ -56,8 +56,8 @@ NEOreka::Application.configure do
     address:        'smtp.gmail.com',
     port:           '587',
     authentication: :plain,
-    user_name:      "coder.soham@gmail.com",
-    password:       "loremipsumdolorsitamet",
+    user_name:      ENV['GMAIL_USERNAME'],
+    password:       ENV['GMAIL_PWD'],
     enable_starttls_auto:         'true'
   }
 
