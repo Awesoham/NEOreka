@@ -12,15 +12,16 @@ class Observation < ActiveRecord::Base
     validates :neo,       presence: true
     validates :user,      presence: true
     
-    acts_as_voteable                       
+    acts_as_voteable  
+                         
     def _dec;     hms(self.dec);    end
     def _ra;      hms(self.ra);     end
 
-    def ra_h;     _ra[:hr].to_s +  sup('h');         end
+    def ra_h;     _ra[:hr].to_s + sup('h');         end
     def ra_m;     _ra[:min].to_s + sup('m');        end
     def ra_s;     _ra[:sec].to_s + sup('s');        end
 
-    def dec_d;    _dec[:deg].to_s + '&deg;';       end
+    def dec_d;    _dec[:hr].to_s + '&deg;';       end
     def dec_m;    _dec[:min].to_s + '&prime;';       end
     def dec_s;    _dec[:sec].to_s + '&Prime;';       end
 
