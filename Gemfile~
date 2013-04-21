@@ -13,6 +13,7 @@ group :assets do
   gem 'less-rails-bootstrap'
 
   gem 'styleguides'
+  gem 'font-awesome-rails'
 end
 
 gem 'jquery-rails'
@@ -20,6 +21,7 @@ gem 'jquery-rails'
 gem 'devise'
 gem 'simple-navigation'
 gem 'simple_form'
+gem 'nested_form'
 gem 'decent_exposure'
 
 gem 'kaminari'
@@ -29,7 +31,10 @@ gem 'slim'
 gem 'thin'
 gem 'airbrake'
 
-gem 'github-markdown' # only for dashboard controller
+gem 'thumbs_up'
+gem 'cocoon'
+
+#gem 'github-markdown'
 
 group :development do
   gem 'quiet_assets'
@@ -64,7 +69,7 @@ group :development, :test do
   gem 'rb-inotify'
   gem 'rspec-rails'
   gem 'spork'
-  gem 'sqlite3'
+  gem 'pg'
   gem 'faker'
 end
 
@@ -81,5 +86,5 @@ group :test do
 end
 
 group :staging, :production do
-  #gem 'pg'
+  gem 'pg'
 end
