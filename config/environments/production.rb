@@ -80,5 +80,5 @@ NEOreka::Application.configure do
 
   # Application specific options
   #
-  config.host = "fs-rails3-base.heroku.com"
+  config.host = "polar-headland-2346.herokuapp.com"
 end
