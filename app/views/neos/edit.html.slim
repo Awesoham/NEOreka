@@ -1,7 +1,10 @@
-- title "#{@user.full_name}"
-.div#span4
-	- if @user.neos.any?
-		- for n in @user.neos
-			.li 
-			| #{n.name}
-
+- title "#{@neo.name}"
+= simple_nested_form_for @neo, wrapper: false do |n|
+	= n.input :name
+	= n.fields_for :observations do |o|
+		= o.input :ra
+		= o.input :dec
+		= o.link_to_remove "Remove this observation", class: ["btn", "btn-custom-red", "float-right"]
+		br
+	= n.link_to_add "Add an observation", :observations, class: ["btn", "btn-custom-blue"]
+	= n.button :wrapped

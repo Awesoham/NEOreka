@@ -22,7 +22,21 @@ class NeosController < ApplicationController
 	end	
 
 	def edit
-		
+		@neo = Neo.find(params[:id])
+		@user = @neo.user
+	end
+
+	def update
+		@neo = Neo.find(params[:id])
+		p = params[:neo][:observations_attributes]
+		Rails.logger.warn("PARAMS: #{p.inspect} with #{p.count}")
+
+		if @neo.update_attributes(params[:neo])
+			redirect_to neo_url(@neo)
+		else
+			flash[:warning] = "Failed!"
+			render 'edit'
+		end		
 	end
 
 	def destroy
@@ -33,7 +47,7 @@ class NeosController < ApplicationController
 		@user = User.find(params[:id])
 		@neos = @user.neos.all
 	end
-
+	
 	def vote_up
 		@neo = Neo.find(params[:id])
 		unless current_user.voted_for?(@neo) then

@@ -1,19 +1,56 @@
 - title "#{@neo.name}"
-= @neo.observations.all
+
+table.table.table-striped
+	thead
+		tr
+			th Date of observation
+			th colspan=3 Right Ascension 
+			th colspan=3 Declination
+			th Observed by 
+	- @neo.observations.all.each do |obs|
+		tbody
+			tr
+				td = obs.created_at
+				td = raw(obs.ra_h);
+				td = raw(obs.ra_m);
+				td = raw(obs.ra_s);
+				td = raw(obs.dec_h);
+				td = raw(obs.dec_m);
+				td = raw(obs.dec_s);
+				td = obs.user ? obs.user.full_name : "" 
+
+
 - content_for :sidebar do
-	table cellpadding=2
-		tr
-			td 
-				b Score
-			td style="text-align: right" = @neo.score
-		tr
-			td 
-				b Votes
-			td style="text-align: right" = @neo.votes_for - @neo.votes_against
-	.btn-group.btn-group-vertical
-		a.btn.btn-primary.btn-success href="#{vote_up_neo_path(@neo)}"
-			b Vote up!   
-			i.icon-thumbs-up 
-		a.btn.btn-primary.btn-default href="#{vote_down_neo_path(@neo)}"
-			b Vote down 
-			i.icon-thumbs-down 
+	table.table.table-hover.table-bordered
+		tbody
+			tr
+				td Score 
+				td #{@neo.score}
+		tbody
+			tr
+				td Votes
+				td #{@neo.votes_for - @neo.votes_against}		
+	center		
+		.btn-group
+			a.btn.btn-primary.btn-custom-green href="#{vote_up_neo_path(@neo)}"
+				b up  
+				i.icon-thumbs-up.icon-large 
+			a.btn.btn-primary.btn-custom-red href="#{vote_down_neo_path(@neo)}"
+				i.icon-thumbs-down.icon-large
+				b   down
+	br
+
+
+- content_for :stream do
+	table.table.table-striped 
+		- @neo.votes_of.each do |h|
+			tbody
+				tr
+					td 
+						a href='/users/#{h[:voter].id}/' = "#{h[:voter].full_name} " 
+						| #{h[:type]}voted 
+
+- content_for :post_sidebar do
+	hr
+	a.btn.btn-primary href="/neos/#{@neo.id}/edit/"
+		b Edit this NEO				

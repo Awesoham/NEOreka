@@ -1,6 +1,6 @@
 class Observation < ActiveRecord::Base
     before_save :strip_decimals_of_coords
-    attr_accessible :dec, :ra, :neo, :user
+    attr_accessible :dec, :ra, :neo, :user, :ra_s, :ra_m, :ra_h, :dec_s, :dec_m, :dec_h
     attr_accessor :ra_s, :ra_m, :ra_h, :dec_s, :dec_m, :dec_h
     belongs_to :user
     belongs_to :neo
@@ -9,24 +9,20 @@ class Observation < ActiveRecord::Base
                            {:greater_than_or_equal_to => 0,         :less_than_or_equal_to => 86400.0}
     validates :dec,       presence: true, :numericality => 
                            {:greater_than_or_equal_to => -324000.0, :less_than_or_equal_to => 324000.0}
-
-    def _dec
-      hms(self.dec)
-    end
-
-    def _ra
-    	hms(self.ra)
-    end
-
-    def dec_str
-      d = _dec
-      "#{d[:hr]}&deg; #{d[:min]}&prime; #{d[:sec]}&Prime;"
-    end
+    validates :neo,       presence: true
+    validates :user,      presence: true
     
-    def ra_str
-      r = _ra
-      "#{r[:hr]}#{sup('h')} #{r[:min]}#{sup('m')} #{r[:sec]}#{sup('s')}"
-    end  
+    acts_as_voteable                       
+    def _dec;     hms(self.dec);    end
+    def _ra;      hms(self.ra);     end
+
+    def ra_h;     _ra[:hr].to_s +  sup('h');         end
+    def ra_m;     _ra[:min].to_s + sup('m');        end
+    def ra_s;     _ra[:sec].to_s + sup('s');        end
+
+    def dec_d;    _dec[:deg].to_s + '&deg;';       end
+    def dec_m;    _dec[:min].to_s + '&prime;';       end
+    def dec_s;    _dec[:sec].to_s + '&Prime;';       end
 
     def rev_hms(h)
         h[:hr]*3600 + h[:min]*60 + h[:sec]
