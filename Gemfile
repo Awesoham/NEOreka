@@ -21,6 +21,7 @@ gem 'jquery-rails'
 gem 'devise'
 gem 'simple-navigation'
 gem 'simple_form'
+gem 'nested_form'
 gem 'decent_exposure'
 
 gem 'kaminari'
