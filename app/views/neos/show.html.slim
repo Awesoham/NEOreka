@@ -1,5 +1,5 @@
 - title "#{@neo.name}"
-
+= @neo.observations.all
 - content_for :sidebar do
 	table cellpadding=2
 		tr
@@ -10,13 +10,10 @@
 			td 
 				b Votes
 			td style="text-align: right" = @neo.votes_for - @neo.votes_against
-	.btn-group
+	.btn-group.btn-group-vertical
 		a.btn.btn-primary.btn-success href="#{vote_up_neo_path(@neo)}"
+			b Vote up!   
 			i.icon-thumbs-up 
-			| Vote up
-		a.btn.btn-primary.btn-default href="#{vote_down_neo_path(@neo)}"		
-			| Vote down 
+		a.btn.btn-primary.btn-default href="#{vote_down_neo_path(@neo)}"
+			b Vote down 
 			i.icon-thumbs-down 
-
-			
-			
