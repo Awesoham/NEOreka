@@ -34,6 +34,7 @@ gem 'airbrake'
 
 gem 'thumbs_up'
 gem 'cocoon'
+gem 'faker'
 
 #gem 'github-markdown'
 
