@@ -1,6 +1,5 @@
 - title "#{@neo.name}"
-= simple_nested_form_for @neo, wrapper: false do |n|
-	= n.input :name
+= simple_nested_form_for @neo do |n|
 	= n.fields_for :observations do |o|
 		= o.input :ra
 		= o.input :dec

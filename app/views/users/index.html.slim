@@ -1,12 +1,16 @@
+- title "All users"
 - unless @users.empty?
-	table
-	ol
-		- for user in @users
+	table.table.table-striped.table-bordered.table-hover
+		thead
 			tr
-				li 
-					td.name = user.full_name
-				td.neos = user.neos.count
-
+				th Name
+				th NEOs found
+		- for user in @users
+				tr
+					td.name 
+						a href="/users/#{user.id}" #{user.full_name}
+					td.neos = user.neos.count
+== paginate @users, theme: "bootstrap", window: 2
 
 
 

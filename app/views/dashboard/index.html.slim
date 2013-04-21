@@ -1,0 +1,16 @@
+<title>Welcome</title>
+.hero-unit
+	h1 This is NEOreka!
+	br
+	p We're gonna change forever how people search for Near Earth Objects. And when we've helped you find one, you'll go "NEOreka!"
+	- unless user_signed_in?
+		br
+		a.btn.btn-large.btn-primary href='/users/sign_up'
+			span.btn-label Sign Up Today!
+
+- content_for :sidebar do
+	ul.nav.nav-pills.nav-stacked
+        li
+          a href="https://github.com/Awesoham/NEOreka" NEOreka on GitHub
+        li
+          a href="http://spaceappschallenge.org/project/neoreka/" The project spec

@@ -4,7 +4,8 @@ NEOreka::Application.routes.draw do
 
   resources :users
 
-  match 'neos/random' => 'neos#random' 
+  match 'neos/random' => 'neos#random'
+  match '/about' => 'dashboard#about'
   resources :neos do
     resources :observations
   	member do

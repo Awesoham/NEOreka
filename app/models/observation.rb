@@ -9,8 +9,8 @@ class Observation < ActiveRecord::Base
                            {:greater_than_or_equal_to => 0,         :less_than_or_equal_to => 86400.0}
     validates :dec,       presence: true, :numericality => 
                            {:greater_than_or_equal_to => -324000.0, :less_than_or_equal_to => 324000.0}
-    validates :neo,       presence: true
-    validates :user,      presence: true
+    #validates :neo,       presence: true
+    #validates :user,      presence: true
     
     acts_as_voteable  
                          

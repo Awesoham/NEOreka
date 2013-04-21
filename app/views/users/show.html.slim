@@ -1,7 +1,16 @@
-- title "#{@user.full_name}"
-.div#span4
-	- if @user.neos.any?
+- title "#{@user.full_name ? @user.full_name : "User"}"
+- if @user.neos.any?
+	table.table.table-striped.table-bordered
+		thead
+			tr
+				th Name
+				th Score
+				th Votes
 		- for n in @user.neos
-			.li 
-			| #{n.name}
+			tbody
+				tr
+					td 
+						a href="/neos/#{n.id}" #{n.name}
+					td #{n.score ? n.score : "Pending"}
+					td #{n.votes_for - n.votes_against}
 

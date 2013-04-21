@@ -1,9 +1,9 @@
 - title "All known NEOs"
 - unless @neos.empty?
-	table.tablesorter cellpadding=5 border=0 
+	table.table.table-bordered.table-striped
 		thead
 			tr
-				th.head_name 
+				th.head_name Name 
 				th.discovery Discovered on
 				th.user Discoverer
 		tbody		
@@ -16,8 +16,13 @@
 					td.user = link_to "#{neo.user.full_name}", "/users/#{neo.user_id}"
 == paginate @neos, theme: "bootstrap", window: 2
 
-- content_for :sidebar do 
-	| Yeah, that's all we got for now.
+- content_for :sidebar do
+	ul.nav.nav-pills.nav-stacked
+        li
+          a href="https://github.com/Awesoham/NEOreka" NEOreka on GitHub
+        li
+          a href="http://spaceappschallenge.org/project/neoreka/" The project spec
+
 
 less:
 	.ra, .dec { text-align: right }	

@@ -15,6 +15,11 @@ class NeosController < ApplicationController
 	def create
 		@neo = current_user.neos.build(params[:neo])
 		if @neo.save
+			@neo.observations.each do |o|
+				o.neo = @neo
+				o.user = current_user
+				o.save!
+			end	
 			redirect_to neo_url(@neo)
 		else
 			render 'new'
@@ -28,10 +33,10 @@ class NeosController < ApplicationController
 
 	def update
 		@neo = Neo.find(params[:id])
-		p = params[:neo][:observations_attributes]
-		Rails.logger.warn("PARAMS: #{p.inspect} with #{p.count}")
-
 		if @neo.update_attributes(params[:neo])
+			obs = @neo.observations.last
+			obs.user = current_user
+			obs.save!
 			redirect_to neo_url(@neo)
 		else
 			flash[:warning] = "Failed!"

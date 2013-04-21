@@ -31,12 +31,13 @@ gem 'kaminari-bootstrap'
 gem 'slim'
 gem 'thin'
 gem 'airbrake'
+gem 'gravatar_image_tag'
 
 gem 'thumbs_up'
 gem 'cocoon'
 gem 'faker'
 
-#gem 'github-markdown'
+gem 'github-markdown'
 
 group :development do
   gem 'quiet_assets'

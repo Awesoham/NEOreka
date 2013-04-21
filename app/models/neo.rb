@@ -24,12 +24,12 @@ class Neo < ActiveRecord::Base
 
   acts_as_voteable
 
-  validates :name,      presence: true, :uniqueness => true
+  #validates :name,      presence: true#, :uniqueness => true
 
   #validates :magnitude, presence: true, :numericality => 
-                       #  {:only_integer => true, :greater_than => -28, :less_than => 33}
+                         #{:only_integer => true, :greater_than => -28, :less_than => 33}
   #validates :score,     presence: true, :numericality =>
-                        # {:only_integer => true, :greater_than_or_equal_to => 0, :less_than_or_equal_to => 100}
+                         #{:only_integer => true, :greater_than_or_equal_to => 0, :less_than_or_equal_to => 100}
   def votes_of
     vl = []
     self.votes.each do |v|

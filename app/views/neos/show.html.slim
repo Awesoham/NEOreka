@@ -17,8 +17,9 @@ table.table.table-striped.table-hover.table-bordered
 				td = raw(obs.dec_d);
 				td = raw(obs.dec_m);
 				td = raw(obs.dec_s);
-				td = obs.user.full_name 
+				td = obs.user ? obs.user.full_name : "Nobody"
 
+= render :partial => "shared/disqus", :locals => { title: @neo.name }
 
 - content_for :sidebar do
 	table.table.table-hover.table-bordered
@@ -53,6 +54,8 @@ table.table.table-striped.table-hover.table-bordered
 
 
 - content_for :post_sidebar do
-	- if current_user == @neo.user
-		a.btn.btn-primary href="/neos/#{@neo.id}/edit/"
-			b Edit this NEO				
+	a.btn.btn-primary href="/neos/#{@neo.id}/edit/"
+		b Edit this NEO
+	- if @neo.user == current_user
+		a.btn.btn-danger href="/neos/#{@neo.id}/destroy/"
+		b Delete this NEO				
