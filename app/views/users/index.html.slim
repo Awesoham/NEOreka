@@ -1,8 +1,10 @@
 - unless @users.empty?
 	table
+	ol
 		- for user in @users
 			tr
-				td.name = user.full_name
+				li 
+					td.name = user.full_name
 				td.neos = user.neos.count
 
 
