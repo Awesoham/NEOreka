@@ -2,6 +2,7 @@ source 'https://rubygems.org'
 
 gem 'rails', '3.2.12'
 gem 'json'
+gem 'rubygems-bundler'
 
 # Gems used only for assets and not required
 # in production environments by default.
@@ -21,6 +22,7 @@ gem 'jquery-rails'
 gem 'devise'
 gem 'simple-navigation'
 gem 'simple_form'
+gem 'nested_form'
 gem 'decent_exposure'
 
 gem 'kaminari'
@@ -32,6 +34,7 @@ gem 'airbrake'
 
 gem 'thumbs_up'
 gem 'cocoon'
+gem 'faker'
 
 #gem 'github-markdown'
 

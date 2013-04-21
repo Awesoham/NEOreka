@@ -10,10 +10,11 @@ en:
       # html: '<abbr title="required">*</abbr>'
     error_notification:
       default_message: "Please review the problems below:"
-    # Labels and hints examples
-    # labels:
-    #   defaults:
-    #     password: 'Password'
+    
+    labels:
+      defaults:
+        ra: 'Right Ascension'
+        dec: 'Declination'
     #   user:
     #     new:
     #       email: 'E-mail to sign in.'
