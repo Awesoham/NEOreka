@@ -12,6 +12,7 @@ class ObservationsController < ApplicationController
 	end
 
 	def create
+		authenticate_user!
 		@neo = current_user.neos.build(params[:neo])
 		if @neo.save
 			redirect_to neo_url(@neo)

@@ -8,11 +8,13 @@ class NeosController < ApplicationController
 	end
 
 	def new
+		authenticate_user!
 		@neo = Neo.new
 		@neo.observations.build
 	end
 
 	def create
+		authenticate_user!
 		@neo = current_user.neos.build(params[:neo])
 		if @neo.save
 			@neo.observations.each do |o|
@@ -27,11 +29,13 @@ class NeosController < ApplicationController
 	end	
 
 	def edit
+		authenticate_user!
 		@neo = Neo.find(params[:id])
 		@user = @neo.user
 	end
 
 	def update
+		authenticate_user!
 		@neo = Neo.find(params[:id])
 		if @neo.update_attributes(params[:neo])
 			obs = @neo.observations.last
@@ -62,6 +66,7 @@ class NeosController < ApplicationController
 	end
 	
 	def vote_up
+		authenticate_user!
 		@neo = Neo.find(params[:id])
 		unless current_user.voted_for?(@neo) then
 		    current_user.vote_exclusively_for(@neo)
@@ -73,6 +78,7 @@ class NeosController < ApplicationController
 	end
 
 	def vote_down
+		authenticate_user!
 		@neo = Neo.find(params[:id])
 		unless current_user.voted_against?(@neo) then
 			current_user.vote_exclusively_against(@neo)
