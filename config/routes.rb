@@ -6,6 +6,7 @@ NEOreka::Application.routes.draw do
 
   match 'neos/random' => 'neos#random' 
   resources :neos do
+    resources :observations
   	member do
   		get :vote_up
   		get :vote_down

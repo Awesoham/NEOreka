@@ -29,8 +29,10 @@ class User < ActiveRecord::Base
 
   attr_accessible :full_name, :email, :password, :password_confirmation, :remember_me, :confirmed_at
   validates :full_name, presence: true
+
   has_many :neos
   has_many :observations
+  
   acts_as_voter
   has_karma(:neos, :as => :user, :weight => 0.5)
 
