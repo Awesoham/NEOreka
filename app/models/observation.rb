@@ -2,14 +2,13 @@ class Observation < ActiveRecord::Base
     before_save :strip_decimals_of_coords
     attr_accessible :dec, :ra, :neo, :user
     attr_accessor :ra_s, :ra_m, :ra_h, :dec_s, :dec_m, :dec_h
+    belongs_to :user
+    belongs_to :neo
 
     validates :ra,        presence: true, :numericality => 
                            {:greater_than_or_equal_to => 0,         :less_than_or_equal_to => 86400.0}
     validates :dec,       presence: true, :numericality => 
                            {:greater_than_or_equal_to => -324000.0, :less_than_or_equal_to => 324000.0}
-
-    belongs_to :neo
-    belongs_to :user
 
     def _dec
       hms(self.dec)

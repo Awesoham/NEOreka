@@ -16,16 +16,20 @@
 
 class Neo < ActiveRecord::Base
 
-  attr_accessible :name, :user_id, :ra, :dec, :created_at, :notes, :magnitude, :score, :user
+  attr_accessible :name, :user_id, :ra, :dec, :created_at, :notes, :magnitude, :score, :user, :observations, :observations_attributes
   belongs_to :user
+
+  has_many :observations
+  accepts_nested_attributes_for :observations
+
   acts_as_voteable
 
   validates :name,      presence: true, :uniqueness => true
 
-  validates :magnitude, presence: true, :numericality => 
-                         {:only_integer => true, :greater_than => -28, :less_than => 33}
-  validates :score,     presence: true, :numericality => 
-                         {:only_integer => true, :greater_than_or_equal_to => 0, :less_than_or_equal_to => 100}
+  #validates :magnitude, presence: true, :numericality => 
+                       #  {:only_integer => true, :greater_than => -28, :less_than => 33}
+  #validates :score,     presence: true, :numericality =>
+                        # {:only_integer => true, :greater_than_or_equal_to => 0, :less_than_or_equal_to => 100}
 
 
   
