@@ -1,11 +1,11 @@
 - title "Add a NEO"
 
-= simple_form_for @neo do |n|
+= simple_nested_form_for @neo, wrapper: false do |n|
 	= n.input :name
-	= n.simple_fields_for :observations do |o|
+	= n.fields_for :observations do |o|
 		= o.input :ra
 		= o.input :dec
+		= o.link_to_remove "Remove this observation", class: ["btn", "btn-custom-red", "float-right"]
+		br
+	= n.link_to_add "Add an observation", :observations, class: ["btn", "btn-custom-blue"]
 	= n.button :wrapped
-
-
-		
