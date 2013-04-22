@@ -19,7 +19,8 @@ To see how it works, visit our [development server](http://neoreka.herokuapp.com
 * Setup the database:
 
     * To use PostgeSQL as the default: edit `/.config/database.yml` and replace `gem 'sqlite3'` in your `Gemfile`, in the `group :test` section, with: 
-    > `gem 'pg'`
+    
+        > `gem 'pg'`
           
 * Run this:
     > `rake db:create db:schema:load`.
