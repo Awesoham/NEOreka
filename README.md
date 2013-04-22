@@ -16,29 +16,10 @@ To see how it works, visit our [development server](http://neoreka.herokuapp.com
 * Open the directory and run `bundle`
 > `cd NEOreka && bundle`
 
-* Setup the database (we use PostgreSQL as the default for Heroku compatibility)
+* Setup the database:
 
-    * To use SQLite as the default: edit `/.config/database.yml` and replace `gem 'pg'` in your `Gemfile`, in the `group :test` section, with: 
-    > `gem 'sqlite3'`
-
-    * Then replace all the text in `./config/database.yml` with this:
-        ```development:
-          adapter: sqlite3
-          database: db/development.sqlite3
-          pool: 5
-          timeout: 5000
-
-        test:
-          adapter: sqlite3
-          database: db/test.sqlite3
-          pool: 5
-          timeout: 5000
-
-        production:
-          adapter: sqlite3
-          database: db/production.sqlite3
-          pool: 5
-          timeout: 5000```
+    * To use PostgeSQL as the default: edit `/.config/database.yml` and replace `gem 'sqlite3'` in your `Gemfile`, in the `group :test` section, with: 
+    > `gem 'pg'`
           
 * Run this:
     > `rake db:create db:schema:load`.
