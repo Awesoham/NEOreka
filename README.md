@@ -25,7 +25,7 @@ To see how it works, visit our [development server](http://neoreka.herokuapp.com
 * Run this:
     > `rake db:create db:schema:load`.
 
-* Optionally create a few dummy users/NEOs (only works in development mode, experimental, amy not work!)
+* Optionally create a few dummy users/NEOs (only works in development mode, experimental, may not work!)
     > `rake db:populate users neos 500`
 
 * Start the server!
